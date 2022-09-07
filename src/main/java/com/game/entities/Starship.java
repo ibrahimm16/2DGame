@@ -3,34 +3,38 @@ package com.game.entities;
 import com.game.Handler;
 import com.game.graphics.Images;
 import com.game.util.GameObject;
-import com.game.util.GameObjectUtility;
 
 import java.awt.*;
+import java.util.List;
+import java.util.ArrayList;
 import java.util.Map;
 
 public class Starship extends GameObject {
 
     private final Map<Character, Boolean> keyMap;
     private float x = 100f, y = 100f;
+    private List<GameObject> lasers = new ArrayList<>();
 
     public Starship(Handler handler) {
         keyMap = handler.getInputManager().keyMap;
         image = Images.getImage("starship");
+        objectLists.put("lasers", lasers);
     }
 
     @Override
     public void update() {
         move();
         shootLaser();
-        GameObjectUtility.updateGameObjects(gameObjects);
+        super.update();
     }
 
     @Override
-    public void render(Graphics2D graphics2D) {
-        graphics2D.drawImage(image, (int) x, (int) y, null);
-        graphics2D.setColor(Color.white);
-        graphics2D.drawString("X : " + x, 20, 20);
-        GameObjectUtility.renderGameObjects(gameObjects, graphics2D);
+    public void render(Graphics2D g) {
+        g.drawImage(image, (int) x, (int) y, null);
+        g.setColor(Color.white);
+        g.drawString("X : " + x, 20, 20);
+        g.drawString("Y : " + y, 20, 40);
+        super.render(g);
     }
 
     private void move() {
@@ -57,8 +61,7 @@ public class Starship extends GameObject {
     }
 
     private void shootLaser() {
-        if (gameObjects.size() < 30 && keyMap.get('f') != null && keyMap.get('f')) {
-            gameObjects.add(new Laser(x, y));
-        }
+        if (keyMap.get('f') != null && keyMap.get('f'))
+            fireTimedEvent(100, () -> lasers.add(new Laser(x, y)));
     }
 }

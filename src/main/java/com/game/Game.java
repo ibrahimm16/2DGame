@@ -16,9 +16,9 @@ public class Game {
         timer.setRepeats(true);
         timer.start();
 
-//        try {
-//            Thread.sleep(1000);
-//        } catch (Exception ignored) {}
+        try {
+            Thread.sleep(1000);
+        } catch (Exception ignored) {}
     }
 
     void update() {

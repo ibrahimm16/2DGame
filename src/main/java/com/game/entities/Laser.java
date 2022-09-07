@@ -19,6 +19,7 @@ public class Laser extends GameObject {
     public void update() {
         if (x - originalX > 500) markedForRemoval = true;
         x += 2f;
+        super.update();
     }
 
     @Override

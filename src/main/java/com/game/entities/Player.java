@@ -2,27 +2,28 @@ package com.game.entities;
 
 import com.game.Handler;
 import com.game.util.GameObject;
-import com.game.util.GameObjectUtility;
 
 import java.awt.*;
 import java.util.Map;
 
 public class Player extends GameObject {
 
+    private final String starship = "starship";
+
     private final Map<Character, Boolean> keyMap;
 
     public Player(Handler handler) {
         keyMap = handler.getInputManager().keyMap;
-        gameObjects.add(new Starship(handler));
+        objects.put(starship, new Starship(handler));
     }
 
     @Override
     public void update() {
-        GameObjectUtility.updateGameObjects(gameObjects);
+        super.update();
     }
 
     @Override
-    public void render(Graphics2D graphics2D) {
-        GameObjectUtility.renderGameObjects(gameObjects, graphics2D);
+    public void render(Graphics2D g) {
+        super.render(g);
     }
 }
