@@ -13,14 +13,14 @@ public class GameObjectUtility {
     }
 
     public static void removeObjects(Map<String, GameObject> objectLists) {
-        List<String> staleObjects = objectLists
+        List<String> markedForRemoval = objectLists
                 .entrySet()
                 .stream()
                 .filter((e) -> e.getValue().markedForRemoval)
                 .map(Map.Entry::getKey)
                 .toList();
 
-        staleObjects.forEach(objectLists::remove);
+        markedForRemoval.forEach(objectLists::remove);
     }
 
     private static void removeFromList(List<GameObject> gameObjects) {

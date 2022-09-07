@@ -32,8 +32,9 @@ public class Starship extends GameObject {
     public void render(Graphics2D g) {
         g.drawImage(image, (int) x, (int) y, null);
         g.setColor(Color.white);
-        g.drawString("X : " + x, 20, 20);
-        g.drawString("Y : " + y, 20, 40);
+        g.drawString("X : " + x, 15, 20);
+        g.drawString("Y : " + y, 15, 40);
+        g.drawString("Lasers : " + lasers.size(), 15, 60);
         super.render(g);
     }
 

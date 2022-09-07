@@ -19,14 +19,15 @@ public abstract class GameObject {
         GameObjectUtility.removeObjects(objects);
         GameObjectUtility.filterLists(objectLists);
 
-        List<GameObject> allObjects = GameObjectUtility.flattenObjects(objects, objectLists);
-        GameObjectUtility.updateObjects(allObjects);
+        List<GameObject> flattenedObjects = GameObjectUtility.flattenObjects(objects, objectLists);
+        GameObjectUtility.updateObjects(flattenedObjects);
+
         tickCounter++;
     }
 
     public void render(Graphics2D g) {
-        List<GameObject> allObjects = GameObjectUtility.flattenObjects(objects, objectLists);
-        GameObjectUtility.renderObjects(allObjects, g);
+        List<GameObject> flattenedObjects = GameObjectUtility.flattenObjects(objects, objectLists);
+        GameObjectUtility.renderObjects(flattenedObjects, g);
     }
 
     public void fireTimedEvent(int milliseconds, Runnable event) {
