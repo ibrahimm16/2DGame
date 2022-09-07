@@ -5,6 +5,7 @@ import com.game.graphics.Images;
 import com.game.util.GameObject;
 
 import java.awt.*;
+import java.util.HashMap;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Map;
@@ -14,11 +15,13 @@ public class Starship extends GameObject {
     private final Map<Character, Boolean> keyMap;
     private float x = 100f, y = 100f;
     private List<GameObject> lasers = new ArrayList<>();
+    Map<String, Runnable> events = new HashMap<>();
 
     public Starship(Handler handler) {
         keyMap = handler.getInputManager().keyMap;
         image = Images.getImage("starship");
         objectLists.put("lasers", lasers);
+        events.put("laser", () -> lasers.add(new Laser(x, y)));
     }
 
     @Override
@@ -35,6 +38,7 @@ public class Starship extends GameObject {
         g.drawString("X : " + x, 15, 20);
         g.drawString("Y : " + y, 15, 40);
         g.drawString("Lasers : " + lasers.size(), 15, 60);
+        g.drawString("tickCounter : " + tickCounter, 15, 80);
         super.render(g);
     }
 
@@ -62,7 +66,9 @@ public class Starship extends GameObject {
     }
 
     private void shootLaser() {
+        Runnable shootLaser = events.get("laser");
+
         if (keyMap.get('f') != null && keyMap.get('f'))
-            fireTimedEvent(100, () -> lasers.add(new Laser(x, y)));
+            fireTimedEvent(250, shootLaser);
     }
 }
