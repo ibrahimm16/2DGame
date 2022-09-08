@@ -3,36 +3,34 @@ package com.game.entities;
 import com.game.Handler;
 import com.game.graphics.Images;
 import com.game.util.GameObject;
+import com.game.util.ObjectUtilManager;
 
 import java.awt.*;
-import java.util.HashMap;
 import java.util.List;
-import java.util.ArrayList;
 import java.util.Map;
 
 public class Starship extends GameObject {
 
     private final Map<Character, Boolean> keyMap;
     private float x = 100f, y = 100f;
-    private List<GameObject> lasers = new ArrayList<>();
-    Map<String, Runnable> events = new HashMap<>();
 
     public Starship(Handler handler) {
         keyMap = handler.getInputManager().keyMap;
         image = Images.getImage("starship");
-        objectLists.put("lasers", lasers);
-        events.put("laser", () -> lasers.add(new Laser(x, y)));
     }
 
     @Override
     public void update() {
         move();
-        shootLaser();
+        fireTimedEvent(250, this::shootLaser);
         super.update();
     }
 
     @Override
     public void render(Graphics2D g) {
+        List<Laser> lasers = ObjectUtilManager.getLasers(objects);
+
+
         g.drawImage(image, (int) x, (int) y, null);
         g.setColor(Color.white);
         g.drawString("X : " + x, 15, 20);
@@ -66,9 +64,16 @@ public class Starship extends GameObject {
     }
 
     private void shootLaser() {
-        Runnable shootLaser = events.get("laser");
-
         if (keyMap.get('f') != null && keyMap.get('f'))
-            fireTimedEvent(250, shootLaser);
+            objects.add(new Laser(x, y));
+    }
+
+    @Override
+    public String toString() {
+        return "Starship{" +
+                "keyMap=" + keyMap +
+                ", x=" + x +
+                ", y=" + y +
+                '}';
     }
 }
