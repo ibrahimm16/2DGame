@@ -2,33 +2,26 @@ package com.game.util;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.util.HashMap;
+import java.util.*;
 import java.util.List;
-import java.util.Map;
 
 public abstract class GameObject {
 
     public int tickCounter = 0;
     public boolean isActive = true;
     public Boolean markedForRemoval = false;
-    public Map<String, GameObject> objects = new HashMap<>();
-    public Map<String, List<GameObject>> objectLists = new HashMap<>();
-
+    public List<GameObject> objects = new ArrayList<>();
     public BufferedImage image;
 
     public void update() {
-        GameObjectUtility.removeObjects(objects);
-        GameObjectUtility.filterLists(objectLists);
-
-        List<GameObject> flattenedObjects = GameObjectUtility.flattenObjects(objects, objectLists);
-        GameObjectUtility.updateObjects(flattenedObjects);
+        CommonUtil.removeObjects(objects);
+        CommonUtil.updateObjects(objects);
 
         tickCounter++;
     }
 
     public void render(Graphics2D g) {
-        List<GameObject> flattenedObjects = GameObjectUtility.flattenObjects(objects, objectLists);
-        GameObjectUtility.renderObjects(flattenedObjects, g);
+        CommonUtil.renderObjects(objects, g);
     }
 
     public void fireTimedEvent(int milliseconds, Runnable event) {
@@ -36,5 +29,10 @@ public abstract class GameObject {
             event.run();
             tickCounter = 0;
         }
+    }
+
+    public void fireEvent(GameObject object, Runnable event) {
+        if (object != null)
+            event.run();
     }
 }

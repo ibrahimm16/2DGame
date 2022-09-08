@@ -15,7 +15,7 @@ public class Handler extends GameObject {
     Handler() {
         inputManager = new InputManager();
         display = new Display(this);
-        objects.put("player", new Player(this));
+        objects.add(new Player(this));
     }
 
     @Override
