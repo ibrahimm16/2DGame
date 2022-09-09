@@ -1,15 +1,18 @@
-package com.game.util;
+package com.game.util.gameobject;
 
 import com.game.entities.Laser;
 import com.game.entities.Starship;
+import com.game.util.abstracts.GameObject;
 
 import java.util.List;
 
-public class ObjectUtilManager {
+public class ConversionUtil {
 
-    private static final ObjectUtil<Laser> laserUtil = new ObjectUtil<>();
-    private static final ObjectUtil<Starship> starshipUtil = new ObjectUtil<>();
+    // Type cast utility objects
+    private static final Converter<Laser> laserUtil = new Converter<>();
+    private static final Converter<Starship> starshipUtil = new Converter<>();
 
+    // Getter methods
     public static List<Laser> getLasers(List<GameObject> gameObjects) {
         return laserUtil.getObjects(Laser.class, gameObjects);
     }

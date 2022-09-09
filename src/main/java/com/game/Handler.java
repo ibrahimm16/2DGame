@@ -1,21 +1,23 @@
 package com.game;
 
-import com.game.entities.Player;
+import com.game.entities.player.Player;
 import com.game.graphics.Display;
-import com.game.util.GameObject;
-import lombok.Data;
+import com.game.util.abstracts.GameObject;
+import com.game.util.KeyMap;
 
 import java.awt.*;
 
-@Data
 public class Handler extends GameObject {
-    private InputManager inputManager;
-    Display display;
+
+    public static Handler handler;
+    public KeyMap keyMap;
+    public Display display;
 
     Handler() {
-        inputManager = new InputManager();
-        display = new Display(this);
-        objects.add(new Player(this));
+        handler = this;
+        keyMap = new KeyMap();
+        display = new Display();
+        objects.add(new Player());
     }
 
     @Override
