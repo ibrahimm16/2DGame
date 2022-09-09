@@ -3,19 +3,19 @@ package com.game;
 import com.game.entities.player.Player;
 import com.game.graphics.Display;
 import com.game.util.abstracts.GameObject;
-import com.game.util.KeyMap;
+import com.game.util.InputMap;
 
 import java.awt.*;
 
 public class Handler extends GameObject {
 
     public static Handler handler;
-    public KeyMap keyMap;
+    public InputMap inputMap;
     public Display display;
 
     Handler() {
         handler = this;
-        keyMap = new KeyMap();
+        inputMap = new InputMap();
         display = new Display();
         objects.add(new Player());
     }

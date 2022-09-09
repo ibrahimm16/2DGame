@@ -1,19 +1,19 @@
 package com.game.util.abstracts;
 
 import com.game.util.misc.Constants;
-import com.game.util.KeyMap;
+import com.game.util.InputMap;
 
 import java.util.HashMap;
 import java.util.Map;
 
 public abstract class ControllableObject extends GameObject {
 
-    public final KeyMap keyMap;
+    public final InputMap inputMap;
     private final Map<Character, Runnable> movementEvents;
     public float x, y, speed;
 
     public ControllableObject() {
-        keyMap = handler.keyMap;
+        inputMap = handler.inputMap;
         movementEvents = new HashMap<>();
 
         movementEvents.put('w', () -> y -= speed);
@@ -32,7 +32,7 @@ public abstract class ControllableObject extends GameObject {
 
     public void move() {
         // Filters the map by movement keys and pressed keys
-        keyMap.entrySet()
+        inputMap.entrySet()
                 .stream()
                 .filter(e -> Constants.movementKeys.contains(e.getKey()))
                 .filter(Map.Entry::getValue)
