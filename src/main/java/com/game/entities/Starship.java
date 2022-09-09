@@ -34,23 +34,16 @@ public class Starship extends ControllableObject {
         g.drawString("Y : " + y, 15, 40);
         g.drawString("Lasers : " + lasers, 15, 60);
         g.drawString("Time Elapsed : " + ticks, 15, 80);
-        g.drawString(keyMap.toString(), 15, 100);
+        g.drawString("X : " + inputMap.getCursor().x + " Y : " + inputMap.getCursor().y, 15, 120);
+        g.drawString("X : " + inputMap.getClick().x + " Y : " + inputMap.getClick().y, 15, 140);
+        g.drawString(inputMap.toString(), 15, 100);
         super.render(g);
     }
 
     private void shootLaser() {
-        if (keyMap.get('f')) {
+        if (inputMap.get('f')) {
             objects.add(new Laser(x, y));
             ticks = 0;
         }
-    }
-
-    @Override
-    public String toString() {
-        return "Starship{" +
-                "keyMap=" + keyMap +
-                ", x=" + x +
-                ", y=" + y +
-                '}';
     }
 }

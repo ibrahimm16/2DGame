@@ -20,9 +20,11 @@ public class Display {
         canvas = new Canvas();
         canvas.setSize(dimension);
         canvas.setFocusable(false);
+        canvas.addMouseListener(handler.inputMap);
+        canvas.addMouseMotionListener(handler.inputMap);
 
         frame = new JFrame();
-        frame.addKeyListener(handler.keyMap);
+        frame.addKeyListener(handler.inputMap);
         frame.setSize(dimension);
         frame.add(canvas);
         frame.setResizable(false);

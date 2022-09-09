@@ -2,6 +2,7 @@ package com.game.util.abstracts;
 
 import com.game.Handler;
 import com.game.util.GameList;
+import com.game.util.InputMap;
 import com.game.util.misc.TimeUtility;
 
 import java.awt.*;
@@ -15,6 +16,7 @@ public abstract class GameObject {
     public Boolean removable;
     public GameList<GameObject> objects;
     public BufferedImage image;
+    public InputMap inputMap;
 
     {
         handler = Handler.handler;
@@ -22,6 +24,10 @@ public abstract class GameObject {
         active = true;
         removable = false;
         objects = new GameList<>();
+
+        if (handler != null) {
+            inputMap = handler.inputMap;
+        }
     }
 
     public void update() {

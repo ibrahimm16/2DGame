@@ -18,7 +18,6 @@ public class GameList<T extends GameObject> extends ArrayList<T> {
     }
 
     private void filter() {
-        // filter by removable elements and remove them from this GameList
         GameList<T> removableObjects;
         removableObjects = stream()
                 .filter(t -> t.removable)

@@ -8,7 +8,7 @@ public class Constants {
 
     public static final int TICK_DELAY = 3;
     public static final int TICK_RATE = 1000 / 3;
-    public static final int WIDTH = 1200, HEIGHT = 700;
+    public static final int WIDTH = 1200, HEIGHT = 800;
     public static Set<Character> keySet;
     public static List<Character> movementKeys;
 
