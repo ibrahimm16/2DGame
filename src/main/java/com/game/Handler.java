@@ -1,31 +1,32 @@
 package com.game;
 
-import com.game.entities.Player;
 import com.game.graphics.Display;
-import com.game.util.GameObject;
-import lombok.Data;
+import com.game.states.StateManager;
+import com.game.util.InputMap;
 
 import java.awt.*;
 
-@Data
-public class Handler extends GameObject {
-    private InputManager inputManager;
-    Display display;
+public class Handler {
+
+    public static Handler handler;
+    public InputMap inputMap;
+    public Display display;
+    public StateManager stateManager;
 
     Handler() {
-        inputManager = new InputManager();
-        display = new Display(this);
-        objects.add(new Player(this));
+        handler = this;
+        inputMap = new InputMap();
+        display = new Display();
+        stateManager = new StateManager();
     }
 
-    @Override
     public void update() {
-        super.update();
+        stateManager.update();
     }
 
     public void render() {
         Graphics2D g = display.render();
-        super.render(g);
+        stateManager.render(g);
         display.show();
     }
 }

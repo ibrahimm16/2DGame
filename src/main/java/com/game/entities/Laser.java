@@ -1,6 +1,6 @@
 package com.game.entities;
 
-import com.game.util.GameObject;
+import com.game.util.abstracts.GameObject;
 
 import java.awt.*;
 
@@ -19,7 +19,7 @@ public class Laser extends GameObject {
 
     @Override
     public void update() {
-        if (x - originalX > 800) markedForRemoval = true;
+        if (x - originalX > 800) removable = true;
         x += 2f;
         super.update();
     }
@@ -28,5 +28,15 @@ public class Laser extends GameObject {
     public void render(Graphics2D graphics2D) {
         graphics2D.setColor(color);
         graphics2D.drawRect((int) x, (int) y, 10, 5);
+    }
+
+    @Override
+    public String toString() {
+        return "Laser{" +
+                "x=" + x +
+                ", y=" + y +
+                ", originalX=" + originalX +
+                ", originalY=" + originalY +
+                '}';
     }
 }

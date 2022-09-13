@@ -1,6 +1,4 @@
-package com.game.util;
-
-import com.game.Constants;
+package com.game.util.misc;
 
 public class TimeUtility {
 

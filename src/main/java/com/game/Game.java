@@ -1,28 +1,25 @@
 package com.game;
 
-import javax.swing.*;
+import com.game.util.misc.Constants;
 
 public class Game {
 
-    Timer timer;
+    Boolean loop = true;
     Handler handler;
 
-    Game() {
-        handler = new Handler();
-        timer = new Timer(Constants.TICK_DELAY, (e) -> update());
-    }
-
     void start() {
-        timer.setRepeats(true);
-        timer.start();
+        handler = new Handler();
 
-        try {
-            Thread.sleep(1000);
-        } catch (Exception ignored) {}
+        while (loop) update();
     }
 
     void update() {
         handler.update();
         handler.render();
+
+        try {
+            Thread.sleep(1000 / Constants.TICK_RATE);
+        } catch (Exception ignored) {
+        }
     }
 }

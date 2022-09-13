@@ -1,14 +1,11 @@
 package com.game.graphics;
 
-import com.game.Constants;
+import com.game.util.misc.Constants;
 import com.game.Handler;
-import com.game.InputManager;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.KeyListener;
 import java.awt.image.BufferStrategy;
-import java.util.Map;
 
 public class Display {
 
@@ -16,17 +13,18 @@ public class Display {
     Canvas canvas;
     Renderer renderer;
 
-    private Map<?, ?> map;
+    public Display() {
+        Handler handler = Handler.handler;
 
-    public Display(Handler handler) {
         Dimension dimension = new Dimension(Constants.WIDTH, Constants.HEIGHT);
-
         canvas = new Canvas();
         canvas.setSize(dimension);
         canvas.setFocusable(false);
+        canvas.addMouseListener(handler.inputMap);
+        canvas.addMouseMotionListener(handler.inputMap);
 
         frame = new JFrame();
-        frame.addKeyListener(handler.getInputManager());
+        frame.addKeyListener(handler.inputMap);
         frame.setSize(dimension);
         frame.add(canvas);
         frame.setResizable(false);
@@ -38,7 +36,6 @@ public class Display {
         canvas.createBufferStrategy(3);
 
         renderer = new Renderer();
-        map = handler.getInputManager().keyMap;
     }
 
     public Graphics2D render() {
@@ -49,7 +46,7 @@ public class Display {
         renderer.show();
     }
 
-    class Renderer {
+    private class Renderer {
 
         Graphics2D g;
         BufferStrategy bufferStrategy;
@@ -68,7 +65,7 @@ public class Display {
         }
 
         void show() {
-            g.setColor(Color.white);
+            g.setColor(new Color(46, 4, 4));
             g.drawRect(0, 0, canvas.getWidth()-1, canvas.getHeight()-1);
             bufferStrategy.show();
             g.dispose();
