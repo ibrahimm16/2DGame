@@ -6,9 +6,10 @@ import com.game.util.abstracts.ControllableObject;
 import com.game.util.gameobject.ConversionUtil;
 
 import java.awt.*;
+import java.io.Serializable;
 import java.util.List;
 
-public class Starship extends ControllableObject {
+public class Starship extends ControllableObject implements Serializable {
 
     public Starship() {
         super();
@@ -21,7 +22,7 @@ public class Starship extends ControllableObject {
     @Override
     public void update() {
         if (inputMap.get('h')) {
-            handler.stateManager.setActiveScene(States.MENU);
+            handler.stateManager.setActiveState(States.MENU);
         }
 
 

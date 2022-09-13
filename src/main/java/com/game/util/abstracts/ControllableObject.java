@@ -2,10 +2,12 @@ package com.game.util.abstracts;
 
 import com.game.util.misc.Constants;
 import com.game.util.InputMap;
+import lombok.Data;
 
 import java.util.HashMap;
 import java.util.Map;
 
+@Data
 public abstract class ControllableObject extends GameObject {
 
     public final InputMap inputMap;

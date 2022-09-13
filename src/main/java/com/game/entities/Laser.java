@@ -3,8 +3,9 @@ package com.game.entities;
 import com.game.util.abstracts.GameObject;
 
 import java.awt.*;
+import java.io.Serializable;
 
-public class Laser extends GameObject {
+public class Laser extends GameObject implements Serializable {
 
     private float x, y, originalX, originalY;
     private Color color;

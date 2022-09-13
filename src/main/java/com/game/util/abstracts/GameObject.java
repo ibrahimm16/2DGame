@@ -4,10 +4,12 @@ import com.game.Handler;
 import com.game.util.GameList;
 import com.game.util.InputMap;
 import com.game.util.misc.TimeUtility;
+import lombok.Data;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
+@Data
 public abstract class GameObject {
 
     public Handler handler;

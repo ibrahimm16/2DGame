@@ -9,7 +9,7 @@ public class MenuState extends State {
     @Override
     public void update() {
         if (new Rectangle(200, 200, 200, 200).contains(inputMap.getClick())) {
-            handler.stateManager.setActiveScene(States.GAME);
+            handler.stateManager.setActiveState(States.GAME);
         }
     }
 

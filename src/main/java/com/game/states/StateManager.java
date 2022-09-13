@@ -20,7 +20,7 @@ public class StateManager {
         activeState.render(g);
     }
 
-    public void setActiveScene(States scene) {
+    public void setActiveState(States scene) {
         activeState = scene.state;
     }
 }
