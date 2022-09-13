@@ -1,6 +1,7 @@
 package com.game.entities;
 
 import com.game.graphics.Images;
+import com.game.states.States;
 import com.game.util.abstracts.ControllableObject;
 import com.game.util.gameobject.ConversionUtil;
 
@@ -19,6 +20,11 @@ public class Starship extends ControllableObject {
 
     @Override
     public void update() {
+        if (inputMap.get('h')) {
+            handler.stateManager.setActiveScene(States.MENU);
+        }
+
+
         fireTimedEvent(250, this::shootLaser);
         super.update();
     }

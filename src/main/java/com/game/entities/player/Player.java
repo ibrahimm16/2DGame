@@ -8,8 +8,6 @@ import java.awt.*;
 
 public class Player extends GameObject {
 
-    public static Converter<Player> util = new Converter<>();
-
     public Player() {
         objects.add(new Starship());
     }

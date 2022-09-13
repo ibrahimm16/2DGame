@@ -1,0 +1,3 @@
+SceneManager class which will belong to the handler
+
+Abstract scenes

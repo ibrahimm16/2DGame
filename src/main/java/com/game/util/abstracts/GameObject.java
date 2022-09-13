@@ -24,10 +24,7 @@ public abstract class GameObject {
         active = true;
         removable = false;
         objects = new GameList<>();
-
-        if (handler != null) {
-            inputMap = handler.inputMap;
-        }
+        inputMap = handler.inputMap;
     }
 
     public void update() {

@@ -15,7 +15,6 @@ public class InputMap extends HashMap<Character, Boolean> implements KeyListener
     private final Point click;
 
     {
-        // Iterate through the valid game keys and default them to false in this map to avoid null issues
         Constants.keySet.forEach(k -> put(k, false));
         cursor = new Point(-10, -10);
         click = new Point(-10, -10);

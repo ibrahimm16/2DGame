@@ -1,0 +1,21 @@
+package com.game.states;
+
+import com.game.util.abstracts.State;
+
+import java.awt.*;
+
+public class MenuState extends State {
+
+    @Override
+    public void update() {
+        if (new Rectangle(200, 200, 200, 200).contains(inputMap.getClick())) {
+            handler.stateManager.setActiveScene(States.GAME);
+        }
+    }
+
+    @Override
+    public void render(Graphics2D g) {
+        g.setColor(Color.white);
+        g.fillRect(200, 200, 200, 200);
+    }
+}
