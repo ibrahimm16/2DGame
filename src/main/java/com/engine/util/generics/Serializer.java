@@ -1,5 +1,6 @@
 package com.engine.util.generics;
 
+import com.engine.Constants;
 import com.engine.abstracts.object.GameObject;
 
 import java.io.FileInputStream;
@@ -9,12 +10,10 @@ import java.io.ObjectOutputStream;
 
 public class Serializer<T extends GameObject> {
 
-    private static final String PATH = "src/main/resources/data/";
-
     public void serialize(T serializable) {
         try {
-            String name = serializable.getClass().getSimpleName();
-            FileOutputStream fos = new FileOutputStream(PATH + name);
+            String path = getFilePath(serializable.getClass().getSimpleName());
+            FileOutputStream fos = new FileOutputStream(path);
             ObjectOutputStream oos = new ObjectOutputStream(fos);
             oos.writeObject(serializable);
             oos.flush();
@@ -23,13 +22,17 @@ public class Serializer<T extends GameObject> {
 
     public T deserialize(Class<T> serializableClass) {
         try {
-            String name = serializableClass.getSimpleName();
-            FileInputStream fis = new FileInputStream(PATH + name);
+            String path = getFilePath(serializableClass.getSimpleName());
+            FileInputStream fis = new FileInputStream(path);
             ObjectInputStream ois = new ObjectInputStream(fis);
             T t = (T) ois.readObject();
             t.init();
             return t;
         } catch (Exception ignored) {}
         return null;
+    }
+
+    private String getFilePath(String name) {
+        return Constants.DATA_PATH + name + ".bin";
     }
 }
