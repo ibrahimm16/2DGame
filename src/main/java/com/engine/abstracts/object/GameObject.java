@@ -1,32 +1,44 @@
-package com.game.util.abstracts;
+package com.engine.abstracts.object;
 
-import com.game.Handler;
-import com.game.util.GameList;
-import com.game.util.InputMap;
-import com.game.util.misc.TimeUtility;
+import com.engine.Handler;
+import com.game.graphics.Images;
+import com.engine.util.GameList;
+import com.engine.util.InputMap;
+import com.engine.util.TimeUtil;
 import lombok.Data;
+import lombok.ToString;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.io.Serializable;
 
 @Data
-public abstract class GameObject {
+@ToString(exclude = {"handler", "image", "inputMap"})
+public abstract class GameObject implements Serializable {
 
-    public Handler handler;
+
+    public transient Handler handler;
+    public transient GameList<GameObject> objects;
+    public transient BufferedImage image;
+    public transient InputMap inputMap;
     public Integer ticks;
     public Boolean active;
     public Boolean removable;
-    public GameList<GameObject> objects;
-    public BufferedImage image;
-    public InputMap inputMap;
 
-    {
+
+    public GameObject() {
+        init();
+    }
+
+    public void init() {
         handler = Handler.handler;
-        ticks = 0;
         active = true;
         removable = false;
+        ticks = 0;
         objects = new GameList<>();
         inputMap = handler.inputMap;
+        String imageKey = this.getClass().getSimpleName();
+        image = Images.getImage(imageKey);
     }
 
     public void update() {
@@ -43,7 +55,7 @@ public abstract class GameObject {
     }
 
     public void fireTimedEvent(int milliseconds, Runnable event) {
-        if (TimeUtility.hasElapsed(milliseconds, ticks) && event != null) {
+        if (TimeUtil.hasElapsed(milliseconds, ticks) && event != null) {
             event.run();
         }
     }

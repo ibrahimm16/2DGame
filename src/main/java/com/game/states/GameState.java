@@ -1,7 +1,7 @@
 package com.game.states;
 
 import com.game.entities.player.Player;
-import com.game.util.abstracts.State;
+import com.engine.abstracts.state.State;
 
 import java.awt.*;
 

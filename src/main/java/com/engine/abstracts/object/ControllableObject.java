@@ -1,17 +1,14 @@
-package com.game.util.abstracts;
+package com.engine.abstracts.object;
 
-import com.game.util.misc.Constants;
-import com.game.util.InputMap;
-import lombok.Data;
+import com.engine.Constants;
 
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 
-@Data
-public abstract class ControllableObject extends GameObject {
+public abstract class ControllableObject extends GameObject implements Serializable {
 
-    public final InputMap inputMap;
-    private final Map<Character, Runnable> movementEvents;
+    private transient Map<Character, Runnable> movementEvents;
     public float x, y, speed;
 
     public ControllableObject() {
@@ -22,6 +19,18 @@ public abstract class ControllableObject extends GameObject {
         movementEvents.put('a', () -> x -= speed);
         movementEvents.put('s', () -> y += speed);
         movementEvents.put('d', () -> x += speed);
+    }
+
+    @Override
+    public void init() {
+        movementEvents = new HashMap<>();
+
+        movementEvents.put('w', () -> y -= speed);
+        movementEvents.put('a', () -> x -= speed);
+        movementEvents.put('s', () -> y += speed);
+        movementEvents.put('d', () -> x += speed);
+
+        super.init();
     }
 
     @Override

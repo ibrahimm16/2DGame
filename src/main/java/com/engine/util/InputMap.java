@@ -1,6 +1,6 @@
-package com.game.util;
+package com.engine.util;
 
-import com.game.util.misc.Constants;
+import com.engine.Constants;
 import lombok.Getter;
 
 import java.awt.*;
@@ -23,6 +23,9 @@ public class InputMap extends HashMap<Character, Boolean> implements KeyListener
     @Override
     public void keyPressed(KeyEvent e) {
         char key = Character.toLowerCase(e.getKeyChar());
+
+        if (key == 'v')
+            GameList.allObjects.forEach(System.out::println);
 
         if (!Constants.keySet.contains(key)) return;
         if (key == '0') System.exit(0);

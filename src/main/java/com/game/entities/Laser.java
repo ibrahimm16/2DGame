@@ -1,6 +1,6 @@
 package com.game.entities;
 
-import com.game.util.abstracts.GameObject;
+import com.engine.abstracts.object.GameObject;
 
 import java.awt.*;
 import java.io.Serializable;

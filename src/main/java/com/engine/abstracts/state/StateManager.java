@@ -1,6 +1,4 @@
-package com.game.states;
-
-import com.game.util.abstracts.State;
+package com.engine.abstracts.state;
 
 import java.awt.*;
 

@@ -1,8 +1,9 @@
-package com.game.util.abstracts;
+package com.engine.abstracts.state;
 
-import com.game.Handler;
-import com.game.util.GameList;
-import com.game.util.InputMap;
+import com.engine.Handler;
+import com.engine.util.GameList;
+import com.engine.util.InputMap;
+import com.engine.abstracts.object.GameObject;
 
 import java.awt.*;
 

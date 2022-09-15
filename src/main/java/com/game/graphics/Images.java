@@ -14,7 +14,7 @@ public class Images {
         images = new HashMap<>();
         try {
             BufferedImage starship = ImageIO.read(new File("src/main/resources/images/starship.png"));
-            images.put("starship", starship);
+            images.put("Starship", starship);
         } catch (Exception ignored) {}
     }
 

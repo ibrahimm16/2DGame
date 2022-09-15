@@ -1,6 +1,7 @@
-package com.game.states;
+package com.engine.abstracts.state;
 
-import com.game.util.abstracts.State;
+import com.game.states.GameState;
+import com.game.states.MenuState;
 
 public enum States {
 

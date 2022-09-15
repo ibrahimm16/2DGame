@@ -1,12 +1,27 @@
-package com.game.util;
+package com.engine.util;
 
-import com.game.util.abstracts.GameObject;
+import com.engine.abstracts.object.GameObject;
 
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.stream.Collectors;
 
 public class GameList<T extends GameObject> extends ArrayList<T> {
+
+    public static ArrayList<GameObject> allObjects = new ArrayList<>();
+
+    @Override
+    public boolean add(T t) {
+        if (allObjects.stream().noneMatch((o) -> o == t)) {
+            allObjects.add(t);
+        }
+        return super.add(t);
+    }
+
+    public boolean remove(Object o) {
+        allObjects.remove(o);
+        return super.remove(o);
+    }
 
     public void update() {
         filter();

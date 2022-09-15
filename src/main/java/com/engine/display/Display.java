@@ -1,7 +1,7 @@
-package com.game.graphics;
+package com.engine.display;
 
-import com.game.util.misc.Constants;
-import com.game.Handler;
+import com.engine.Constants;
+import com.engine.Handler;
 
 import javax.swing.*;
 import java.awt.*;

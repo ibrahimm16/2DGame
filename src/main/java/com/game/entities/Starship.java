@@ -1,28 +1,30 @@
 package com.game.entities;
 
-import com.game.graphics.Images;
-import com.game.states.States;
-import com.game.util.abstracts.ControllableObject;
-import com.game.util.gameobject.ConversionUtil;
+
+import com.engine.abstracts.state.States;
+import com.engine.abstracts.object.ControllableObject;
+import com.engine.util.generics.ConversionUtil;
 
 import java.awt.*;
-import java.io.Serializable;
 import java.util.List;
 
-public class Starship extends ControllableObject implements Serializable {
+public class Starship extends ControllableObject {
 
     public Starship() {
         super();
         x = 100;
         y = 100;
         speed = 2f;
-        image = Images.getImage("starship");
     }
 
     @Override
     public void update() {
         if (inputMap.get('h')) {
             handler.stateManager.setActiveState(States.MENU);
+            fireTimedEvent(5, () -> {
+                System.out.println(this);
+                ticks = 0;
+            });
         }
 
 
@@ -52,5 +54,19 @@ public class Starship extends ControllableObject implements Serializable {
             objects.add(new Laser(x, y));
             ticks = 0;
         }
+    }
+
+    @Override
+    public String toString() {
+        return "Starship{" +
+                ", x=" + x +
+                ", y=" + y +
+                ", speed=" + speed +
+                ", objects=" + objects +
+                ", inputMap=" + inputMap +
+                ", ticks=" + ticks +
+                ", active=" + active +
+                ", removable=" + removable +
+                '}';
     }
 }
