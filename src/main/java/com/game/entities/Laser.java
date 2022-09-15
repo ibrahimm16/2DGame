@@ -11,6 +11,8 @@ public class Laser extends GameObject implements Serializable {
     private Color color;
 
     public Laser(float originalX, float originalY) {
+        originalX += 34;
+        originalY += 18;
         x = originalX;
         y = originalY;
         this.originalX = originalX;
