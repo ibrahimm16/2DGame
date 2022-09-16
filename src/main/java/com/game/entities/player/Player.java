@@ -11,6 +11,7 @@ public class Player extends GameObject {
 
     public Player() {
         objects.add(new Starship());
+        timer.add("load", 200);
     }
 
     @Override
@@ -22,10 +23,9 @@ public class Player extends GameObject {
         }
 
         if (inputMap.get('2')) {
-            fireTimedEvent(200, () -> {
+            fireTimedEvent("load", () -> {
                 Starship starship = SerializerUtil.loadStarship();
                 objects.add(starship);
-                ticks = 0;
             });
         }
         super.update();

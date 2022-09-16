@@ -1,10 +1,10 @@
 package com.engine.abstracts.object;
 
 import com.engine.Handler;
+import com.engine.util.Timer;
 import com.game.graphics.Images;
 import com.engine.util.GameList;
 import com.engine.util.InputMap;
-import com.engine.util.TimeUtil;
 import lombok.Data;
 import lombok.ToString;
 
@@ -21,7 +21,7 @@ public abstract class GameObject implements Serializable {
     public transient GameList<GameObject> objects;
     public transient BufferedImage image;
     public transient InputMap inputMap;
-    public Integer ticks;
+    public transient Timer timer;
     public Boolean active;
     public Boolean removable;
 
@@ -34,7 +34,7 @@ public abstract class GameObject implements Serializable {
         handler = Handler.handler;
         active = true;
         removable = false;
-        ticks = 0;
+        timer = new Timer();
         objects = new GameList<>();
         inputMap = handler.inputMap;
         String imageKey = this.getClass().getSimpleName();
@@ -43,7 +43,7 @@ public abstract class GameObject implements Serializable {
 
     public void update() {
         objects.update();
-        ticks++;
+        timer.update();
     }
 
     public void render(Graphics2D g) {
@@ -54,13 +54,10 @@ public abstract class GameObject implements Serializable {
         if (event != null) event.run();
     }
 
-    public void fireTimedEvent(int milliseconds, Runnable event) {
-        if (TimeUtil.hasElapsed(milliseconds, ticks) && event != null) {
+    public void fireTimedEvent(String timerName, Runnable event) {
+        if (timer.canFire(timerName)) {
             event.run();
+            timer.reset(timerName);
         }
-    }
-
-    public void nullCheckEvent(GameObject object, Runnable event) {
-        if (object != null && event != null) event.run();
     }
 }
