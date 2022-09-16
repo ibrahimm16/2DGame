@@ -93,7 +93,9 @@ public class Starship extends ControllableObject {
 
     private void shootLaser() {
         if (inputMap.get('f')) {
-            objects.add(new Laser(x, y));
+            Laser laser = new Laser();
+            laser.setLocation(new Point((int) x, (int) y));
+            objects.add(laser);
         }
     }
 }

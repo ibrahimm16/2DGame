@@ -25,9 +25,7 @@ public class Serializer<T extends GameObject> {
             String path = getFilePath(serializableClass.getSimpleName());
             FileInputStream fis = new FileInputStream(path);
             ObjectInputStream ois = new ObjectInputStream(fis);
-            T t = (T) ois.readObject();
-            t.init();
-            return t;
+            return (T) ois.readObject();
         } catch (Exception ignored) {}
         return null;
     }

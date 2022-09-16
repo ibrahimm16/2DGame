@@ -10,13 +10,8 @@ public class Laser extends GameObject implements Serializable {
     private float x, y, originalX, originalY;
     private Color color;
 
-    public Laser(float originalX, float originalY) {
-        originalX += 34;
-        originalY += 18;
-        x = originalX;
-        y = originalY;
-        this.originalX = originalX;
-        this.originalY = originalY;
+    public Laser() {
+        super();
         color = new Color((int) (Math.random() * 256), (int) (Math.random() * 256), (int) (Math.random() * 256));
     }
 
@@ -33,13 +28,10 @@ public class Laser extends GameObject implements Serializable {
         graphics2D.drawRect((int) x, (int) y, 10, 5);
     }
 
-    @Override
-    public String toString() {
-        return "Laser{" +
-                "x=" + x +
-                ", y=" + y +
-                ", originalX=" + originalX +
-                ", originalY=" + originalY +
-                '}';
+    public void setLocation(Point point) {
+        originalX = point.x + 34;
+        originalY = point.y + 18;
+        x = originalX;
+        y = originalY;
     }
 }

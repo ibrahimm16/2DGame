@@ -21,20 +21,25 @@ public abstract class GameObject implements Serializable {
     public transient GameList<GameObject> objects;
     public transient BufferedImage image;
     public transient InputMap inputMap;
-    public transient Timer timer;
+    public Timer timer;
     public Boolean active;
     public Boolean removable;
 
-
     public GameObject() {
-        init();
-    }
-
-    public void init() {
         handler = Handler.handler;
         active = true;
         removable = false;
         timer = new Timer();
+        objects = new GameList<>();
+        inputMap = handler.inputMap;
+        String imageKey = this.getClass().getSimpleName();
+        image = Images.getImage(imageKey);
+    }
+
+    public void deserialize() {
+        handler = Handler.handler;
+        active = true;
+        removable = false;
         objects = new GameList<>();
         inputMap = handler.inputMap;
         String imageKey = this.getClass().getSimpleName();

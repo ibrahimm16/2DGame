@@ -12,25 +12,14 @@ public abstract class ControllableObject extends GameObject implements Serializa
     public float x, y, speed;
 
     public ControllableObject() {
-        inputMap = handler.inputMap;
-        movementEvents = new HashMap<>();
-
-        movementEvents.put('w', () -> y -= speed);
-        movementEvents.put('a', () -> x -= speed);
-        movementEvents.put('s', () -> y += speed);
-        movementEvents.put('d', () -> x += speed);
+        super();
+        generateEvents();
     }
 
     @Override
-    public void init() {
-        movementEvents = new HashMap<>();
-
-        movementEvents.put('w', () -> y -= speed);
-        movementEvents.put('a', () -> x -= speed);
-        movementEvents.put('s', () -> y += speed);
-        movementEvents.put('d', () -> x += speed);
-
-        super.init();
+    public void deserialize() {
+        super.deserialize();
+        generateEvents();
     }
 
     @Override
@@ -48,5 +37,14 @@ public abstract class ControllableObject extends GameObject implements Serializa
                 .filter(e -> Constants.movementKeys.contains(e.getKey()))
                 .filter(Map.Entry::getValue)
                 .forEach(e -> fireEvent(movementEvents.get(e.getKey())));
+    }
+
+    public void generateEvents() {
+        movementEvents = new HashMap<>();
+
+        movementEvents.put('w', () -> y -= speed);
+        movementEvents.put('a', () -> x -= speed);
+        movementEvents.put('s', () -> y += speed);
+        movementEvents.put('d', () -> x += speed);
     }
 }

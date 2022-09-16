@@ -12,7 +12,10 @@ public class SerializerUtil {
 
     public static Starship loadStarship() {
         Starship s = starship.deserialize(Starship.class);
-        s.init();
+        if (s == null) {
+            return new Starship();
+        }
+        s.deserialize();
         return s;
     }
 }

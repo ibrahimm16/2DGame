@@ -2,10 +2,11 @@ package com.engine.util;
 
 import com.engine.Constants;
 
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Timer {
+public class Timer implements Serializable {
 
     // The Integer array part of this map holds two values
     // Index 1 : timer delay
