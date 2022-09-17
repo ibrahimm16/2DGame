@@ -2,6 +2,7 @@ package com.engine.abstracts.object;
 
 import com.engine.Constants;
 
+import java.awt.*;
 import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
@@ -46,5 +47,9 @@ public abstract class ControllableObject extends GameObject implements Serializa
         movementEvents.put('a', () -> x -= speed);
         movementEvents.put('s', () -> y += speed);
         movementEvents.put('d', () -> x += speed);
+    }
+
+    public Rectangle boundingBox() {
+        return new Rectangle((int) x, (int) y, image.getWidth(), image.getHeight());
     }
 }

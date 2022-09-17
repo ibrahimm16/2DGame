@@ -5,17 +5,12 @@ import com.engine.util.Timer;
 import com.game.graphics.Images;
 import com.engine.util.GameList;
 import com.engine.util.InputMap;
-import lombok.Data;
-import lombok.ToString;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.Serializable;
 
-@Data
-@ToString(exclude = {"handler", "image", "inputMap"})
 public abstract class GameObject implements Serializable {
-
 
     public transient Handler handler;
     public transient GameList<GameObject> objects;
@@ -38,8 +33,6 @@ public abstract class GameObject implements Serializable {
 
     public void deserialize() {
         handler = Handler.handler;
-        active = true;
-        removable = false;
         objects = new GameList<>();
         inputMap = handler.inputMap;
         String imageKey = this.getClass().getSimpleName();

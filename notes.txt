@@ -1,3 +1,15 @@
 SceneManager class which will belong to the handler
 
 Abstract scenes
+
+new abstract is extension of GameObject (HPObject)
+int hp
+takeDamage(int hp)
+restoreHp(int hp)
+
+Attack extends GameObject
+int damage
+
+doDamage(HPObject object) {
+    object.takeDamage(damage)
+}

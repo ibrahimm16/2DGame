@@ -1,13 +1,10 @@
 package com.game.entities;
 
-
 import com.engine.abstracts.state.States;
 import com.engine.abstracts.object.ControllableObject;
-import com.engine.util.generics.ConversionUtil;
 import com.game.graphics.Colors;
 
 import java.awt.*;
-import java.util.List;
 
 public class Starship extends ControllableObject {
 
@@ -30,7 +27,6 @@ public class Starship extends ControllableObject {
             handler.stateManager.setActiveState(States.MENU);
         }
 
-
         if (inputMap.get('4')) {
             fireTimedEvent("addHP", () -> {
                 if (hp != 1000) {
@@ -48,35 +44,29 @@ public class Starship extends ControllableObject {
             });
         }
 
-
-        fireTimedEvent("laser", this::shootLaser);
+        shootLaser();
         super.update();
     }
 
     @Override
     public void render(Graphics2D g) {
-        List<Laser> lasers = ConversionUtil.getLasers(objects);
-
-
         g.drawImage(image, (int) x, (int) y, null);
+
         g.setColor(Color.white);
-        g.drawString("X : " + x, 15, 20);
-        g.drawString("Y : " + y, 15, 40);
-        g.drawString("Lasers : " + lasers, 15, 60);
-        g.drawString("Timer : " + timer, 15, 80);
-        g.drawString("X : " + inputMap.getCursor().x + " Y : " + inputMap.getCursor().y, 15, 120);
-        g.drawString("X : " + inputMap.getClick().x + " Y : " + inputMap.getClick().y, 15, 140);
-        g.drawString(inputMap.toString(), 15, 100);
+        g.drawString("bounding box : " + boundingBox(), 15, 40);
+        g.drawString("Timer : " + timer, 15, 60);
+        g.drawString("X : " + inputMap.getCursor().x + " Y : " + inputMap.getCursor().y, 15, 80);
+        g.drawString("X : " + inputMap.getClick().x + " Y : " + inputMap.getClick().y, 15, 100);
 
 //        g.drawRect((int) (x - 16), (int) (y-1), 21, 6);
 
-        if (hp > 750) {
+        if (hp > 75) {
             g.setColor(Colors.green);
         }
-        else if (hp > 400) {
+        else if (hp > 40) {
             g.setColor(Colors.yellow);
         }
-        else if (hp > 175) {
+        else if (hp > 20) {
             g.setColor(Colors.orange);
         }
         else {
@@ -93,9 +83,11 @@ public class Starship extends ControllableObject {
 
     private void shootLaser() {
         if (inputMap.get('f')) {
-            Laser laser = new Laser();
-            laser.setLocation(new Point((int) x, (int) y));
-            objects.add(laser);
+            fireTimedEvent("laser", () -> {
+                Laser laser = new Laser();
+                laser.setLocation(new Point((int) x, (int) y));
+                objects.add(laser);
+            });
         }
     }
 }
