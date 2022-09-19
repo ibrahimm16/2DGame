@@ -3,9 +3,8 @@ package com.game.entities;
 import com.engine.abstracts.object.GameObject;
 
 import java.awt.*;
-import java.io.Serializable;
 
-public class Laser extends GameObject implements Serializable {
+public class Laser extends GameObject {
 
     private float x, y, originalX, originalY;
     private Color color;
@@ -28,9 +27,9 @@ public class Laser extends GameObject implements Serializable {
         graphics2D.drawRect((int) x, (int) y, 10, 5);
     }
 
-    public void setLocation(Point point) {
-        originalX = point.x + 34;
-        originalY = point.y + 18;
+    public void setLocation(Rectangle boundingBox) {
+        originalX = boundingBox.x + 34;
+        originalY = boundingBox.y + 18;
         x = originalX;
         y = originalY;
     }

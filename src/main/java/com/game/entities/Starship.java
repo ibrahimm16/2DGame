@@ -53,10 +53,10 @@ public class Starship extends ControllableObject {
         g.drawImage(image, (int) x, (int) y, null);
 
         g.setColor(Color.white);
-        g.drawString("bounding box : " + boundingBox(), 15, 40);
-        g.drawString("Timer : " + timer, 15, 60);
-        g.drawString("X : " + inputMap.getCursor().x + " Y : " + inputMap.getCursor().y, 15, 80);
-        g.drawString("X : " + inputMap.getClick().x + " Y : " + inputMap.getClick().y, 15, 100);
+        g.drawString("bounding box : " + boundingBox(), 15, 20);
+        g.drawString("Timer : " + timer, 15, 40);
+        g.drawString("X : " + inputMap.getCursor().x + " Y : " + inputMap.getCursor().y, 15, 60);
+        g.drawString("X : " + inputMap.getClick().x + " Y : " + inputMap.getClick().y, 15, 80);
 
 //        g.drawRect((int) (x - 16), (int) (y-1), 21, 6);
 
@@ -85,7 +85,7 @@ public class Starship extends ControllableObject {
         if (inputMap.get('f')) {
             fireTimedEvent("laser", () -> {
                 Laser laser = new Laser();
-                laser.setLocation(new Point((int) x, (int) y));
+                laser.setLocation(boundingBox());
                 objects.add(laser);
             });
         }

@@ -18,8 +18,8 @@ public abstract class ControllableObject extends GameObject implements Serializa
     }
 
     @Override
-    public void deserialize() {
-        super.deserialize();
+    public void init() {
+        super.init();
         generateEvents();
     }
 
@@ -32,7 +32,6 @@ public abstract class ControllableObject extends GameObject implements Serializa
     }
 
     public void move() {
-        // Filters the map by movement keys and pressed keys
         inputMap.entrySet()
                 .stream()
                 .filter(e -> Constants.movementKeys.contains(e.getKey()))

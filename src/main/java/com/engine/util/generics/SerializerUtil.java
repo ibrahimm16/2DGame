@@ -15,7 +15,7 @@ public class SerializerUtil {
         if (s == null) {
             return new Starship();
         }
-        s.deserialize();
+        s.init();
         return s;
     }
 }
