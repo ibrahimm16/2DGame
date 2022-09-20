@@ -7,10 +7,9 @@ import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 
-public abstract class ControllableObject extends GameObject implements Serializable {
+public abstract class ControllableObject extends Entity implements Serializable {
 
     private transient Map<Character, Runnable> movementEvents;
-    public float x, y, speed;
 
     public ControllableObject() {
         super();
@@ -31,6 +30,7 @@ public abstract class ControllableObject extends GameObject implements Serializa
         super.update();
     }
 
+    @Override
     public void move() {
         inputMap.entrySet()
                 .stream()
@@ -42,10 +42,10 @@ public abstract class ControllableObject extends GameObject implements Serializa
     public void generateEvents() {
         movementEvents = new HashMap<>();
 
-        movementEvents.put('w', () -> y -= speed);
-        movementEvents.put('a', () -> x -= speed);
-        movementEvents.put('s', () -> y += speed);
-        movementEvents.put('d', () -> x += speed);
+        movementEvents.put('w', () -> y -= velY);
+        movementEvents.put('a', () -> x -= velX);
+        movementEvents.put('s', () -> y += velY);
+        movementEvents.put('d', () -> x += velX);
     }
 
     public Rectangle boundingBox() {

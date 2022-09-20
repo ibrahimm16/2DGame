@@ -14,7 +14,8 @@ public class Starship extends ControllableObject {
         super();
         x = 100;
         y = 100;
-        speed = 2f;
+        velX = 2f;
+        velY = 2f;
         hp = 100;
         timer.add("addHP", 100);
         timer.add("dropHP", 200);
@@ -45,7 +46,10 @@ public class Starship extends ControllableObject {
         }
 
         shootLaser();
-        super.update();
+//        super.update();
+        move();
+        objects.update();
+        timer.update();
     }
 
     @Override

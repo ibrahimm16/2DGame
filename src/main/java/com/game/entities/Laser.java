@@ -1,12 +1,12 @@
 package com.game.entities;
 
-import com.engine.abstracts.object.GameObject;
+import com.engine.abstracts.object.Entity;
 
 import java.awt.*;
 
-public class Laser extends GameObject {
+public class Laser extends Entity {
 
-    private float x, y, originalX, originalY;
+    private float originalX, originalY;
     private Color color;
 
     public Laser() {
