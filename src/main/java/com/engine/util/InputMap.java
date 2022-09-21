@@ -13,6 +13,9 @@ public class InputMap extends HashMap<Character, Boolean> implements KeyListener
     private final Point cursor;
     @Getter
     private final Point click;
+    @Getter
+    private boolean isPressed = false;
+
 
     {
         Constants.keySet.forEach(k -> put(k, false));
@@ -52,13 +55,20 @@ public class InputMap extends HashMap<Character, Boolean> implements KeyListener
         cursor.setLocation(e.getX(), e.getY());
     }
 
+    @Override
+    public void mousePressed(MouseEvent e) {
+        isPressed = true;
+    }
+
+    @Override
+    public void mouseReleased(MouseEvent e) {
+        isPressed = false;
+    }
+
+
     // Unused
     @Override
     public void keyTyped(KeyEvent e) {}
-    @Override
-    public void mousePressed(MouseEvent e) {}
-    @Override
-    public void mouseReleased(MouseEvent e) {}
     @Override
     public void mouseEntered(MouseEvent e) {}
     @Override
