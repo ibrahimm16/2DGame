@@ -15,6 +15,6 @@ public class Constants {
 
     static {
         movementKeys = Arrays.asList('w', 'a', 's', 'd');
-        keySet = Set.of('w', 'a', 's', 'd', 'f', '0', 'h', '1', '2', '4', '5');
+        keySet = Set.of('w', 'a', 's', 'd', 'f', '0', 'h', 'q', '1', '2', '4', '5');
     }
 }

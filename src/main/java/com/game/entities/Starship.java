@@ -2,6 +2,7 @@ package com.game.entities;
 
 import com.engine.abstracts.state.States;
 import com.engine.abstracts.object.ControllableObject;
+import com.game.entities.player.Missile;
 import com.game.graphics.Colors;
 
 import java.awt.*;
@@ -14,12 +15,13 @@ public class Starship extends ControllableObject {
         super();
         x = 100;
         y = 100;
-        velX = 2f;
-        velY = 2f;
+        velX = 1f;
+        velY = 1f;
         hp = 100;
         timer.add("addHP", 100);
         timer.add("dropHP", 200);
         timer.add("laser", 250);
+        timer.add("missile", 375);
     }
 
     @Override
@@ -46,6 +48,7 @@ public class Starship extends ControllableObject {
         }
 
         shootLaser();
+        shootMissile();
 //        super.update();
         move();
         objects.update();
@@ -86,11 +89,20 @@ public class Starship extends ControllableObject {
     }
 
     private void shootLaser() {
-        if (inputMap.get('f')) {
+        if (inputMap.get('f')||inputMap.isPressed()) {
             fireTimedEvent("laser", () -> {
                 Laser laser = new Laser();
                 laser.setLocation(boundingBox());
                 objects.add(laser);
+            });
+        }
+    }
+    private void shootMissile() {
+        if (inputMap.get('q')||inputMap.isPressed()) {
+            fireTimedEvent("missile", () -> {
+                Missile missile = new Missile();
+                missile.setLocation(boundingBox());
+                objects.add(missile);
             });
         }
     }
