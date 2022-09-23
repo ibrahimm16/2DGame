@@ -10,6 +10,7 @@ public class Missile extends AbstractWeapon {
 
     public Missile() {
         super();
+        maxSpeed = 2f;
         vector.range = 800;
         vector.velX = .1f;
         vector.velY = 0;

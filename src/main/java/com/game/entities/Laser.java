@@ -10,6 +10,7 @@ public class Laser extends AbstractWeapon {
 
     public Laser() {
         super();
+        maxSpeed = 2f;
         vector.range = 800;
         vector.velX = 2f;
         vector.velY = 0;

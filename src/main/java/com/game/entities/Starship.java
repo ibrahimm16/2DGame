@@ -97,7 +97,7 @@ public class Starship extends ControllableObject {
         if (inputMap.get('f')||inputMap.isPressed()) {
             fireTimedEvent("laser", () -> {
                 Laser laser = new Laser();
-                laser.setLocation(boundingBox());
+                laser.setLocation(angle, boundingBox());
                 objects.add(laser);
             });
         }
@@ -106,7 +106,7 @@ public class Starship extends ControllableObject {
         if (inputMap.get('q')||inputMap.isPressed()) {
             fireTimedEvent("missile", () -> {
                 Missile missile = new Missile();
-                missile.setLocation(boundingBox());
+                missile.setLocation(angle, boundingBox());
                 objects.add(missile);
             });
         }
