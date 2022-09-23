@@ -2,6 +2,7 @@ package com.game.entities;
 
 import com.engine.abstracts.state.States;
 import com.engine.abstracts.object.ControllableObject;
+import com.engine.util.VectorUtil;
 import com.game.entities.player.Missile;
 import com.game.graphics.Colors;
 
@@ -10,7 +11,6 @@ import java.awt.*;
 public class Starship extends ControllableObject {
 
     private int hp;
-
 
     public Starship() {
         super();
@@ -60,7 +60,7 @@ public class Starship extends ControllableObject {
     public void render(Graphics2D g) {
         int centerY = (int)(vector.y + image.getHeight() / 2);
         int centerX = (int)(vector.x + image.getWidth() / 2);
-        angle = Math.atan2(centerY - inputMap.getCursor().y, centerX - inputMap.getCursor().x) - Math.PI / 2;
+        angle = VectorUtil.calculateAngle(new Point(centerX, centerY), inputMap.getCursor());
         g.rotate(angle, centerX, centerY);
         g.drawImage(image, (int) vector.x, (int) vector.y, null);
         g.rotate(-1*angle, centerX, centerY);

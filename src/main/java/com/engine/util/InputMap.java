@@ -65,6 +65,10 @@ public class InputMap extends HashMap<Character, Boolean> implements KeyListener
         isPressed = false;
     }
 
+    @Override
+    public void mouseDragged(MouseEvent e) {
+        cursor.setLocation(e.getX(), e.getY());
+    }
 
     // Unused
     @Override
@@ -73,6 +77,4 @@ public class InputMap extends HashMap<Character, Boolean> implements KeyListener
     public void mouseEntered(MouseEvent e) {}
     @Override
     public void mouseExited(MouseEvent e) {}
-    @Override
-    public void mouseDragged(MouseEvent e) {}
 }

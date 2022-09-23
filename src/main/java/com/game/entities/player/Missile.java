@@ -17,13 +17,13 @@ public class Missile extends AbstractWeapon {
     }
 
     public void update() {
-        vector.velX += acceleration;
+        vector.velX += (vector.velX > 0) ? acceleration : -1 * acceleration;
         super.update();
     }
 
     @Override
     public void render(Graphics2D graphics2D) {
-        graphics2D.drawImage(image, (int)vector.x, (int)vector.y, 20, 10, null);
+        graphics2D.drawImage(image, (int)vector.x, (int)vector.y, null);
     }
 }
 

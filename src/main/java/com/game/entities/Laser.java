@@ -1,12 +1,12 @@
 package com.game.entities;
 
 import com.engine.abstracts.object.AbstractWeapon;
-import com.engine.abstracts.object.Entity;
 
 import java.awt.*;
 
 public class Laser extends AbstractWeapon {
 
+    private Color color;
 
     public Laser() {
         super();
@@ -14,6 +14,7 @@ public class Laser extends AbstractWeapon {
         vector.range = 800;
         vector.velX = 2f;
         vector.velY = 0;
+        color = new Color((int) (Math.random() * 256), (int) (Math.random() * 256), (int) (Math.random() * 256));
     }
 
     @Override

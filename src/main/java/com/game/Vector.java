@@ -1,8 +1,12 @@
 package com.game;
 
 import com.engine.abstracts.object.GameObject;
+import com.engine.util.VectorUtil;
 
-public class Vector {
+import java.awt.*;
+import java.io.Serializable;
+
+public class Vector implements Serializable {
 
     public float x, y;
     public float velX, velY;
@@ -25,29 +29,12 @@ public class Vector {
     }
 
     public float Normalize() {
-        float mag = this.Magnitude();
+        float mag = VectorUtil.magnitude(this);
         float x = this.x / mag;
         float y = this.y / mag;
         return 0f;
     }
 
-
-
-
-
-    public Vector(float x, float y) {
-        this.x = x;
-        this.y = y;
-    }
-
-    public Vector(Vector v) {
-        set(v);
-    }
-
-    public void set(float x, float y) {
-        this.x = x;
-        this.y = y;
-    }
 
     public void set(Vector v) {
         this.x = v.x;
@@ -61,5 +48,9 @@ public class Vector {
         double yDist = Math.pow(velY, 2);
         distance += (float) Math.sqrt(xDist + yDist);
         if (distance > range && isRemovable) object.removable = true;
+    }
+
+    public Point point() {
+        return new Point((int) x, (int) y);
     }
 }
