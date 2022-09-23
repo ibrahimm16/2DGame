@@ -11,12 +11,13 @@ public class Starship extends ControllableObject {
 
     private int hp;
 
+
     public Starship() {
         super();
-        x = 100;
-        y = 100;
-        velX = 1f;
-        velY = 1f;
+        vector.x = 100;
+        vector.y = 100;
+        vector.velX = 1f;
+        vector.velY = 1f;
         hp = 100;
         timer.add("addHP", 100);
         timer.add("dropHP", 200);
@@ -57,8 +58,12 @@ public class Starship extends ControllableObject {
 
     @Override
     public void render(Graphics2D g) {
-        g.drawImage(image, (int) x, (int) y, null);
-
+        int centerY = (int)(vector.y + image.getHeight() / 2);
+        int centerX = (int)(vector.x + image.getWidth() / 2);
+        angle = Math.atan2(centerY - inputMap.getCursor().y, centerX - inputMap.getCursor().x) - Math.PI / 2;
+        g.rotate(angle, centerX, centerY);
+        g.drawImage(image, (int) vector.x, (int) vector.y, null);
+        g.rotate(-1*angle, centerX, centerY);
         g.setColor(Color.white);
         g.drawString("bounding box : " + boundingBox(), 15, 20);
         g.drawString("Timer : " + timer, 15, 40);
@@ -81,10 +86,10 @@ public class Starship extends ControllableObject {
         }
 
 
-        g.drawString("" + hp, x - 45, y + 5);
-        g.drawRect((int) (x - 16), (int) (y-1), 21, 6);
+        g.drawString("" + hp, vector.x - 45, vector.y + 5);
+        g.drawRect((int) (vector.x - 16), (int) (vector.y-1), 21, 6);
         double hpWidth = (double) hp / (double) 100;
-        g.fillRect((int) (x - 15), (int) y, (int) (hpWidth * 20), 5);
+        g.fillRect((int) (vector.x - 15), (int) vector.y, (int) (hpWidth * 20), 5);
         super.render(g);
     }
 

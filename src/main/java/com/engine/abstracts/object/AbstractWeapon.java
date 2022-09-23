@@ -5,32 +5,30 @@ import java.io.Serializable;
 
 public abstract class AbstractWeapon extends Entity {
 
-    public float originalX, originalY;
+
     public Color color;
-    public float range;
-    public float distance = 0;
-
-
+    float maxSpeed;
 
     public AbstractWeapon() {
         super();
+        vector.isRemovable = true;
+        vector.object = this;
         color = new Color((int) (Math.random() * 256), (int) (Math.random() * 256), (int) (Math.random() * 256));
     }
 
-    public void setLocation(Rectangle boundingBox) {
-        originalX = boundingBox.x + boundingBox.width;
-        originalY = boundingBox.y + boundingBox.height / 2f;
-        x = originalX;
-        y = originalY;
+    public void setLocation(double angle, Rectangle boundingBox) {
+        vector.x = boundingBox.x + boundingBox.width;
+        vector.y = boundingBox.y + boundingBox.height / 2f;
+        double xVel = maxSpeed*Math.cos(angle);
+        xVel = (angle >= 90 && angle <= 270) ? -1 * xVel : xVel;
+        double yVel = maxSpeed*Math.sin(angle);
+        yVel = (angle >= 0 && angle <= 180) ? -1 * xVel : yVel;
+
     }
 
     @Override
     public void move() {
         super.move();
-        double xDist = Math.pow(x-originalX, 2);
-        double yDist = Math.pow(y-originalY, 2);
-        distance = (float)Math.sqrt(xDist + yDist);
-        if (distance > range) removable = true;
 
     }
 }

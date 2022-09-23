@@ -6,15 +6,34 @@ public class Vector {
 
     public float x, y;
     public float velX, velY;
-    public float distance = 0;
+    public float distance;
     public float range;
     public float angle;
     public GameObject object;
+    public Boolean isRemovable = false;
 
+    public Vector() {
+
+    }
 
     public Vector(GameObject object) {
         this.object = object;
     }
+
+    public float Magnitude() {
+        return (float)Math.sqrt(x*x + y*y);
+    }
+
+    public float Normalize() {
+        float mag = this.Magnitude();
+        float x = this.x / mag;
+        float y = this.y / mag;
+        return 0f;
+    }
+
+
+
+
 
     public Vector(float x, float y) {
         this.x = x;
@@ -41,6 +60,6 @@ public class Vector {
         double xDist = Math.pow(velX, 2);
         double yDist = Math.pow(velY, 2);
         distance += (float) Math.sqrt(xDist + yDist);
-        if (distance > range) object.removable = true;
+        if (distance > range && isRemovable) object.removable = true;
     }
 }

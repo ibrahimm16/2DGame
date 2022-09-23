@@ -1,11 +1,14 @@
 package com.engine.abstracts.object;
 
+import com.game.Vector;
+
 import java.awt.*;
+
 
 public class Entity extends GameObject {
 
-    public float x, y;
-    public float velX, velY;
+
+    public Vector vector = new Vector();
     public int hp;
     public int damage;
 
@@ -20,8 +23,7 @@ public class Entity extends GameObject {
     }
 
     public void move() {
-        x += velX;
-        y += velY;
+        vector.move();
     }
 
     public void dealDamage(Entity entity) {
@@ -35,7 +37,7 @@ public class Entity extends GameObject {
     }
 
     public Rectangle boundingBox() {
-        return new Rectangle((int) x, (int) y, image.getWidth(), image.getHeight());
+        return new Rectangle((int) vector.x, (int) vector.y, image.getWidth(), image.getHeight());
     }
 
     public Boolean intersects(Rectangle enemyBox) {

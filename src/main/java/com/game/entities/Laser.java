@@ -10,14 +10,14 @@ public class Laser extends AbstractWeapon {
 
     public Laser() {
         super();
-        range = 800;
-        velX = 2f;
-        velY = 0;
+        vector.range = 800;
+        vector.velX = 2f;
+        vector.velY = 0;
     }
 
     @Override
     public void render(Graphics2D graphics2D) {
         graphics2D.setColor(color);
-        graphics2D.drawRect((int) x, (int) y, 10, 5);
+        graphics2D.drawRect((int) vector.x, (int) vector.y, 10, 5);
     }
 }

@@ -27,6 +27,7 @@ public class Player extends GameObject {
 
     @Override
     public void render(Graphics2D g) {
+
         super.render(g);
     }
 }

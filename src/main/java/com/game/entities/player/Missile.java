@@ -10,19 +10,19 @@ public class Missile extends AbstractWeapon {
 
     public Missile() {
         super();
-        range = 800;
-        velX = .1f;
-        velY = 0;
+        vector.range = 800;
+        vector.velX = .1f;
+        vector.velY = 0;
     }
 
     public void update() {
-        velX += acceleration;
+        vector.velX += acceleration;
         super.update();
     }
 
     @Override
     public void render(Graphics2D graphics2D) {
-        graphics2D.drawImage(image, (int)x, (int)y, 20, 10, null);
+        graphics2D.drawImage(image, (int)vector.x, (int)vector.y, 20, 10, null);
     }
 }
 

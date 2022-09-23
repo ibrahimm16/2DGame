@@ -11,10 +11,14 @@ public abstract class ControllableObject extends Entity implements Serializable 
 
     private transient Map<Character, Runnable> movementEvents;
 
+
+    public double angle;
+
     public ControllableObject() {
         super();
         generateEvents();
     }
+
 
     @Override
     public void init() {
@@ -42,13 +46,13 @@ public abstract class ControllableObject extends Entity implements Serializable 
     public void generateEvents() {
         movementEvents = new HashMap<>();
 
-        movementEvents.put('w', () -> y -= velY);
-        movementEvents.put('a', () -> x -= velX);
-        movementEvents.put('s', () -> y += velY);
-        movementEvents.put('d', () -> x += velX);
+        movementEvents.put('w', () -> vector.y -= vector.velY);
+        movementEvents.put('a', () -> vector.x -= vector.velX);
+        movementEvents.put('s', () -> vector.y += vector.velY);
+        movementEvents.put('d', () -> vector.x += vector.velX);
     }
 
     public Rectangle boundingBox() {
-        return new Rectangle((int) x, (int) y, image.getWidth(), image.getHeight());
+        return new Rectangle((int) vector.x, (int) vector.y, image.getWidth(), image.getHeight());
     }
 }
