@@ -1,10 +1,10 @@
 package com.game.entities.player;
 
-import com.engine.abstracts.object.AbstractWeapon;
+import com.engine.abstracts.object.Weapon;
 
 import java.awt.*;
 
-public class Missile extends AbstractWeapon {
+public class Missile extends Weapon {
     public float acceleration = .006f;
 
 

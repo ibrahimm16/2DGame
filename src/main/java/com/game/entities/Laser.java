@@ -1,10 +1,10 @@
 package com.game.entities;
 
-import com.engine.abstracts.object.AbstractWeapon;
+import com.engine.abstracts.object.Weapon;
 
 import java.awt.*;
 
-public class Laser extends AbstractWeapon {
+public class Laser extends Weapon {
 
     private Color color;
 

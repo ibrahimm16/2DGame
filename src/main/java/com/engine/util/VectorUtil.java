@@ -7,9 +7,9 @@ import java.awt.*;
 public class VectorUtil {
 
     public static double calculateAngle(Point p1, Point p2) {
-        int xDif = p1.x - p2.x;
-        int yDif = p1.y - p2.y;
-        return Math.atan2(yDif, xDif) - Math.PI / 2;
+        int xDif = p2.x - p1.x;
+        int yDif = p2.y - p1.y;
+        return Math.atan2(yDif, xDif);
     }
 
     public static float magnitude(Vector vector) {
@@ -19,14 +19,18 @@ public class VectorUtil {
     }
 
     public static float calculateXVel(double angle, float maxSpeed) {
-        double xVel = maxSpeed*Math.cos(angle);
-        xVel = (angle >= Math.PI / 2.0 && angle <= 3 * Math.PI / 2.0) ? -1 * xVel : xVel;
+        double degrees = Math.toDegrees(angle);
+        double xVel = maxSpeed * Math.cos(angle);
+        int minAngle = 90;
+        int maxAngle = 270;
+        xVel = (angle >= minAngle && angle <= maxAngle) ? -1 * xVel : xVel;
         return (float) xVel;
     }
 
     public static float calculateYVel(double angle, float maxSpeed) {
-        double yVel = maxSpeed*Math.sin(angle);
-        yVel = (angle >= 0 && angle <= Math.PI) ? -1 * yVel : yVel;
+        double yVel = maxSpeed * Math.sin(angle);
+        double minAngle = 180;
+        yVel = (angle >= minAngle) ? -1 * yVel :yVel;
         return (float) yVel;
     }
 }

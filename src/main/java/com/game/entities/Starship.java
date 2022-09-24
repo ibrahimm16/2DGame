@@ -21,8 +21,8 @@ public class Starship extends ControllableObject {
         hp = 100;
         timer.add("addHP", 100);
         timer.add("dropHP", 200);
-        timer.add("laser", 250);
-        timer.add("missile", 375);
+        timer.add("laser", 2);
+        timer.add("missile", 5);
     }
 
     @Override
@@ -69,6 +69,7 @@ public class Starship extends ControllableObject {
         g.drawString("Timer : " + timer, 15, 40);
         g.drawString("X : " + inputMap.getCursor().x + " Y : " + inputMap.getCursor().y, 15, 60);
         g.drawString("X : " + inputMap.getClick().x + " Y : " + inputMap.getClick().y, 15, 80);
+        g.drawString("angle : " + angle, 15, 100);
 
 //        g.drawRect((int) (x - 16), (int) (y-1), 21, 6);
 

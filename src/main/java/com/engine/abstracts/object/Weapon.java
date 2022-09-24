@@ -3,17 +3,15 @@ package com.engine.abstracts.object;
 import com.engine.util.GameList;
 import com.engine.util.VectorUtil;
 import com.engine.util.generics.ConversionUtil;
-import com.game.Vector;
 
 import java.awt.*;
-import java.io.Serializable;
 
-public abstract class AbstractWeapon extends Entity {
+public abstract class Weapon extends Entity {
 
     public float maxSpeed;
     public int damage;
 
-    public AbstractWeapon() {
+    public Weapon() {
         super();
         vector.isRemovable = true;
         vector.object = this;

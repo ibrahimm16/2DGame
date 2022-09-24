@@ -35,12 +35,6 @@ public class Vector implements Serializable {
         return 0f;
     }
 
-
-    public void set(Vector v) {
-        this.x = v.x;
-        this.y = v.y;
-    }
-
     public void move() {
         x += velX;
         y += velY;
@@ -50,7 +44,7 @@ public class Vector implements Serializable {
         if (distance > range && isRemovable) object.removable = true;
     }
 
-    public Point point() {
+    public Point coordinates() {
         return new Point((int) x, (int) y);
     }
 }
