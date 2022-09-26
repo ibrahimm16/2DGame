@@ -13,9 +13,9 @@ public class Images {
     static {
         images = new HashMap<>();
         try {
-            BufferedImage starship = ImageIO.read(new File("src/main/resources/images/starship2.png"));
+            BufferedImage starship = ImageIO.read(new File("src/main/resources/images/starship.png"));
             images.put("Starship", starship);
-            BufferedImage missile = ImageIO.read(new File("src/main/resources/images/missile2.png"));
+            BufferedImage missile = ImageIO.read(new File("src/main/resources/images/missile.png"));
             images.put("Missile", missile);
         } catch (Exception ignored) {}
     }

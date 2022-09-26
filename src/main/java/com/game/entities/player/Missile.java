@@ -23,7 +23,7 @@ public class Missile extends Weapon {
 
     @Override
     public void render(Graphics2D graphics2D) {
-        graphics2D.drawImage(image, (int)vector.x, (int)vector.y, null);
+        graphics2D.drawImage(image, (int)vector.x, (int)vector.y, 15, 5, null);
     }
 }
 

@@ -1,4 +1,4 @@
-package com.game;
+package com.engine.util;
 
 import com.engine.abstracts.object.GameObject;
 import com.engine.util.VectorUtil;

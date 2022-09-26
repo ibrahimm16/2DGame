@@ -18,7 +18,7 @@ public abstract class Weapon extends Entity {
     }
 
     public void setLocation(double angle, Rectangle boundingBox) {
-        vector.x = boundingBox.x + boundingBox.width;
+        vector.x = boundingBox.x + boundingBox.width / 2f;
         vector.y = boundingBox.y + boundingBox.height / 2f;
         vector.velX = VectorUtil.calculateXVel(angle, maxSpeed);
         vector.velY = VectorUtil.calculateYVel(angle, maxSpeed);

@@ -1,7 +1,5 @@
 package com.engine.util;
 
-import com.game.Vector;
-
 import java.awt.*;
 
 public class VectorUtil {
@@ -23,14 +21,15 @@ public class VectorUtil {
         double xVel = maxSpeed * Math.cos(angle);
         int minAngle = 90;
         int maxAngle = 270;
-        xVel = (angle >= minAngle && angle <= maxAngle) ? -1 * xVel : xVel;
+//        xVel = (degrees >= minAngle && degrees <= maxAngle) ? -1 * xVel : xVel;
         return (float) xVel;
     }
 
     public static float calculateYVel(double angle, float maxSpeed) {
+        double degrees = Math.toDegrees(angle);
         double yVel = maxSpeed * Math.sin(angle);
         double minAngle = 180;
-        yVel = (angle >= minAngle) ? -1 * yVel :yVel;
+//        yVel = (degrees >= minAngle) ? -1 * yVel :yVel;
         return (float) yVel;
     }
 }

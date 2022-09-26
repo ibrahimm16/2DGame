@@ -1,6 +1,6 @@
 package com.engine.abstracts.object;
 
-import com.game.Vector;
+import com.engine.util.Vector;
 
 import java.awt.*;
 
