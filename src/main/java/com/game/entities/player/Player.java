@@ -1,24 +1,33 @@
 package com.game.entities.player;
 
+import com.engine.util.generics.ConversionUtil;
+import com.engine.util.generics.SerializerUtil;
 import com.game.entities.Starship;
-import com.game.util.abstracts.GameObject;
-import com.game.util.gameobject.Converter;
+import com.engine.abstracts.object.GameObject;
 
 import java.awt.*;
 
 public class Player extends GameObject {
 
     public Player() {
-        objects.add(new Starship());
+        super();
+        Starship starship = SerializerUtil.loadStarship();
+        objects.add(starship);
     }
 
     @Override
     public void update() {
+        if (inputMap.get('1')) {
+            Starship starship = ConversionUtil.getStarship(objects);
+            SerializerUtil.saveStarship(starship);
+        }
+
         super.update();
     }
 
     @Override
     public void render(Graphics2D g) {
+
         super.render(g);
     }
 }

@@ -1,8 +1,9 @@
-package com.game;
+package com.engine;
 
-import com.game.graphics.Display;
-import com.game.states.StateManager;
-import com.game.util.InputMap;
+import com.engine.display.Display;
+import com.engine.abstracts.state.StateManager;
+import com.engine.util.GameList;
+import com.engine.util.InputMap;
 
 import java.awt.*;
 
@@ -13,7 +14,7 @@ public class Handler {
     public Display display;
     public StateManager stateManager;
 
-    Handler() {
+    public Handler() {
         handler = this;
         inputMap = new InputMap();
         display = new Display();
@@ -27,6 +28,8 @@ public class Handler {
     public void render() {
         Graphics2D g = display.render();
         stateManager.render(g);
+        g.setColor(Color.white);
+        g.drawString("" + GameList.allObjects.size(), 15, 700);
         display.show();
     }
 }

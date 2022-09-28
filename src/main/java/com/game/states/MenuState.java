@@ -1,6 +1,7 @@
 package com.game.states;
 
-import com.game.util.abstracts.State;
+import com.engine.abstracts.state.State;
+import com.engine.abstracts.state.States;
 
 import java.awt.*;
 
@@ -9,7 +10,7 @@ public class MenuState extends State {
     @Override
     public void update() {
         if (new Rectangle(200, 200, 200, 200).contains(inputMap.getClick())) {
-            handler.stateManager.setActiveScene(States.GAME);
+            handler.stateManager.setActiveState(States.GAME);
         }
     }
 

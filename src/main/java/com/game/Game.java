@@ -1,6 +1,7 @@
 package com.game;
 
-import com.game.util.misc.Constants;
+import com.engine.Constants;
+import com.engine.Handler;
 
 public class Game {
 

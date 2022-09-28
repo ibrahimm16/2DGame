@@ -1,6 +1,4 @@
-package com.game.states;
-
-import com.game.util.abstracts.State;
+package com.engine.abstracts.state;
 
 import java.awt.*;
 
@@ -20,7 +18,7 @@ public class StateManager {
         activeState.render(g);
     }
 
-    public void setActiveScene(States scene) {
+    public void setActiveState(States scene) {
         activeState = scene.state;
     }
 }

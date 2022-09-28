@@ -1,7 +1,8 @@
-package com.game.graphics;
+package com.engine.display;
 
-import com.game.util.misc.Constants;
-import com.game.Handler;
+import com.engine.Constants;
+import com.engine.Handler;
+import com.game.graphics.Images;
 
 import javax.swing.*;
 import java.awt.*;
@@ -60,12 +61,13 @@ public class Display {
             g.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
             g.setColor(Color.black);
             g.fillRect(0, 0, canvas.getWidth(), canvas.getHeight());
+            g.drawImage(Images.getImage("Background"), 0, 0, null);
 
             return g;
         }
 
         void show() {
-            g.setColor(new Color(46, 4, 4));
+            g.setColor(Color.white);
             g.drawRect(0, 0, canvas.getWidth()-1, canvas.getHeight()-1);
             bufferStrategy.show();
             g.dispose();

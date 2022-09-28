@@ -1,7 +1,7 @@
-package com.game.util.gameobject;
+package com.engine.util.generics;
 
-import com.game.util.GameList;
-import com.game.util.abstracts.GameObject;
+import com.engine.abstracts.object.GameObject;
+import com.engine.util.GameList;
 
 import java.util.stream.Collectors;
 
