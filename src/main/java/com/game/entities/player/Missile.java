@@ -11,6 +11,8 @@ public class Missile extends Weapon {
     public Missile() {
         super();
         maxSpeed = 2f;
+        width = 25;
+        height = 10;
         vector.range = 800;
         vector.velX = .1f;
         vector.velY = 0;
@@ -23,7 +25,9 @@ public class Missile extends Weapon {
 
     @Override
     public void render(Graphics2D graphics2D) {
-        graphics2D.drawImage(image, (int)vector.x, (int)vector.y, 15, 5, null);
+        rotate(graphics2D, 1);
+        graphics2D.drawImage(image, (int)vector.x, (int)vector.y, (int)width, (int)height, null);
+        rotate(graphics2D, -1);
     }
 }
 
