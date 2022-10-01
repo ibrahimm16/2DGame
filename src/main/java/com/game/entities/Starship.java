@@ -21,8 +21,8 @@ public class Starship extends ControllableObject {
         hp = 100;
         timer.add("addHP", 100);
         timer.add("dropHP", 200);
-        timer.add("laser", 2);
-        timer.add("missile", 5);
+        timer.add("laser", 100);
+        timer.add("missile", 1000);
     }
 
     @Override

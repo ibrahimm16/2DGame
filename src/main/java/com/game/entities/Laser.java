@@ -14,6 +14,8 @@ public class Laser extends Weapon {
         vector.range = 800;
         width = Math.ceil(1);
         height = Math.ceil(1);
+        damage = 10;
+        hp = 10;
         vector.velX = 2f;
         vector.velY = 0;
         color = new Color((int) (Math.random() * 256), (int) (Math.random() * 256), (int) (Math.random() * 256));

@@ -1,5 +1,6 @@
 package com.game.states;
 
+import com.game.entities.Carl;
 import com.game.entities.player.Player;
 import com.engine.abstracts.state.State;
 
@@ -9,6 +10,7 @@ public class GameState extends State {
 
     public GameState() {
         objects.add(new Player());
+        objects.add(new Carl());
     }
 
     @Override

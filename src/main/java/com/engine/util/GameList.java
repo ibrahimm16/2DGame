@@ -8,18 +8,20 @@ import java.util.stream.Collectors;
 
 public class GameList<T extends GameObject> extends ArrayList<T> {
 
-    public static ArrayList<GameObject> allObjects = new ArrayList<>();
+    public static GameList<GameObject> allObjects = new GameList<>();
 
     @Override
     public boolean add(T t) {
         if (allObjects.stream().noneMatch((o) -> o == t)) {
-            allObjects.add(t);
+            allObjects.add(0,t);
         }
         return super.add(t);
     }
 
+
     public boolean remove(Object o) {
-        allObjects.remove(o);
+        int index = allObjects.indexOf(o);
+        allObjects.remove(index);
         return super.remove(o);
     }
 

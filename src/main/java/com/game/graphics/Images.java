@@ -19,6 +19,8 @@ public class Images {
             images.put("Missile", missile);
             BufferedImage background = ImageIO.read(new File("src/main/resources/images/background.png"));
             images.put("Background", background);
+            BufferedImage carl = ImageIO.read(new File("src/main/resources/images/carl.png"));
+            images.put("Carl", carl);
         } catch (Exception ignored) {}
     }
 

@@ -1,5 +1,6 @@
 package com.engine.util.generics;
 
+import com.engine.abstracts.object.Enemy;
 import com.engine.abstracts.object.Entity;
 import com.engine.util.GameList;
 import com.game.entities.Laser;
@@ -11,6 +12,7 @@ public class ConversionUtil {
     private static final Converter<Laser> laser = new Converter<>();
     private static final Converter<Starship> starship = new Converter<>();
     private static final Converter<Entity> entity = new Converter<>();
+    private static final Converter<Enemy> enemy = new Converter<>();
 
     // Getter methods
     public static GameList<Laser> getLasers(GameList<?> gameObjects) {
@@ -31,6 +33,10 @@ public class ConversionUtil {
 
     public static GameList<Entity> getEntities(GameList<?> gameObjects) {
         return entity.getObjects(Entity.class, gameObjects);
+    }
+
+    public static GameList<Enemy> getEnemies(GameList<?> gameObjects) {
+        return enemy.getObjects(Enemy.class, gameObjects);
     }
 
     public static Entity getEntity(GameList<?> gameObjects) {

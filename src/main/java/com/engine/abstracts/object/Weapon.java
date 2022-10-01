@@ -5,6 +5,7 @@ import com.engine.util.VectorUtil;
 import com.engine.util.generics.ConversionUtil;
 
 import java.awt.*;
+import java.util.List;
 
 public abstract class Weapon extends Entity {
 
@@ -42,13 +43,22 @@ public abstract class Weapon extends Entity {
     public void move() {
         super.move();
     }
+    @Override
+    public void update() {
+        super.update();
+        dealDamage();
+    }
 
-    public void dealDamage(GameList<?> objects) {
-        GameList<Entity> entities = ConversionUtil.getEntities(objects);
+    public void dealDamage() {
+        GameList<GameObject> allObjects = GameList.allObjects;
+        GameList<Enemy> entities = ConversionUtil.getEnemies(allObjects);
 
         entities.forEach(entity -> {
             Rectangle enemyBox = entity.boundingBox();
-            if (intersects(enemyBox)) entity.takeDamage(damage);
+            if (intersects(enemyBox)) {
+                entity.takeDamage(damage);
+                removable = true;
+            }
         });
     }
 }
