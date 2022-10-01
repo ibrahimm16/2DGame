@@ -10,6 +10,9 @@ public abstract class Weapon extends Entity {
 
     public float maxSpeed;
     public int damage;
+    public double angle;
+    public double width;
+    public double height;
 
     public Weapon() {
         super();
@@ -17,9 +20,20 @@ public abstract class Weapon extends Entity {
         vector.object = this;
     }
 
+    public void rotate(Graphics2D graphics2D, int factor) {
+        graphics2D.rotate(angle*factor, vector.x + (width / 2), vector.y + (height / 2));
+
+    }
+
     public void setLocation(double angle, Rectangle boundingBox) {
-        vector.x = boundingBox.x + boundingBox.width / 2f;
-        vector.y = boundingBox.y + boundingBox.height / 2f;
+        // We want the projectile to exit from the tip of the ship
+        this.angle = angle;
+        float radius = (float)(boundingBox.width / 2);
+        double originalX = (double)(boundingBox.x + boundingBox.width / 2);
+        double originalY = (double)(boundingBox.y + boundingBox.height / 2);
+        vector.x = (float)(originalX + (radius * Math.cos(angle)));
+        vector.y = (float)(originalY + (radius * Math.sin(angle)));
+
         vector.velX = VectorUtil.calculateXVel(angle, maxSpeed);
         vector.velY = VectorUtil.calculateYVel(angle, maxSpeed);
     }

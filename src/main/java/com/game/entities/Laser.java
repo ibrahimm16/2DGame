@@ -12,14 +12,20 @@ public class Laser extends Weapon {
         super();
         maxSpeed = 2f;
         vector.range = 800;
+        width = Math.ceil(1);
+        height = Math.ceil(1);
         vector.velX = 2f;
         vector.velY = 0;
         color = new Color((int) (Math.random() * 256), (int) (Math.random() * 256), (int) (Math.random() * 256));
     }
 
+    //int centerX =
+
     @Override
     public void render(Graphics2D graphics2D) {
+        rotate(graphics2D, 1);
         graphics2D.setColor(color);
-        graphics2D.drawRect((int) vector.x, (int) vector.y, 10, 5);
+        graphics2D.drawRect((int)(vector.x), (int)(vector.y), (int)width, (int)height);
+        rotate(graphics2D, -1);
     }
 }
