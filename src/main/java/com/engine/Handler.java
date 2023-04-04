@@ -9,16 +9,20 @@ import java.awt.*;
 
 public class Handler {
 
-    public static Handler handler;
+    private static Handler handler = new Handler();
     public InputMap inputMap;
     public Display display;
     public StateManager stateManager;
 
-    public Handler() {
+    private Handler() {
         handler = this;
         inputMap = new InputMap();
         display = new Display();
         stateManager = new StateManager();
+    }
+
+    public static Handler get() {
+        return handler;
     }
 
     public void update() {

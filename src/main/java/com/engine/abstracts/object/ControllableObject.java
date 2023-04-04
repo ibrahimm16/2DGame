@@ -9,16 +9,13 @@ import java.util.Map;
 
 public abstract class ControllableObject extends Entity implements Serializable {
 
-    private transient Map<Character, Runnable> movementEvents;
-
-
     public double angle;
+    private transient Map<Character, Runnable> movementEvents;
 
     public ControllableObject() {
         super();
         generateEvents();
     }
-
 
     @Override
     public void init() {
@@ -34,15 +31,6 @@ public abstract class ControllableObject extends Entity implements Serializable 
         super.update();
     }
 
-    @Override
-    public void move() {
-        inputMap.entrySet()
-                .stream()
-                .filter(e -> Constants.movementKeys.contains(e.getKey()))
-                .filter(Map.Entry::getValue)
-                .forEach(e -> fireEvent(movementEvents.get(e.getKey())));
-    }
-
     public void generateEvents() {
         movementEvents = new HashMap<>();
 
@@ -50,6 +38,15 @@ public abstract class ControllableObject extends Entity implements Serializable 
         movementEvents.put('a', () -> vector.x -= vector.velX);
         movementEvents.put('s', () -> vector.y += vector.velY);
         movementEvents.put('d', () -> vector.x += vector.velX);
+    }
+
+    @Override
+    public void move() {
+        inputMap.entrySet()
+                .stream()
+                .filter(Map.Entry::getValue)
+                .filter(e -> Constants.movementKeys.contains(e.getKey()))
+                .forEach(e -> fireEvent(movementEvents.get(e.getKey())));
     }
 
     public Rectangle boundingBox() {

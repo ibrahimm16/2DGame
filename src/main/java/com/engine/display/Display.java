@@ -15,7 +15,7 @@ public class Display {
     Renderer renderer;
 
     public Display() {
-        Handler handler = Handler.handler;
+        Handler handler = Handler.get();
 
         Dimension dimension = new Dimension(Constants.WIDTH, Constants.HEIGHT);
         canvas = new Canvas();

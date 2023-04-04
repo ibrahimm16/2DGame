@@ -1,15 +1,7 @@
 package com.engine.abstracts.state;
 
-import com.game.states.GameState;
-import com.game.states.MenuState;
+public abstract class States {
 
-public enum States {
-
-    MENU(new MenuState()), GAME(new GameState());
-
-    public final State state;
-
-    States(State state) {
-        this.state = state;
-    }
+    public static final String MENU = "MENU";
+    public static final String GAME = "GAME";
 }

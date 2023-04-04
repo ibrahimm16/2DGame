@@ -23,7 +23,7 @@ public class Timer implements Serializable {
         timeValues[1] = 0;
     }
 
-    public Boolean canFire(String name) {
+    public boolean canFire(String name) {
         Integer[] timeValues = timers.get(name);
         return timeValues[1] >= timeValues[0];
     }

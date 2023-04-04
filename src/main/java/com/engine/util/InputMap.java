@@ -1,7 +1,6 @@
 package com.engine.util;
 
 import com.engine.Constants;
-import lombok.Getter;
 
 import java.awt.*;
 import java.awt.event.*;
@@ -9,15 +8,11 @@ import java.util.HashMap;
 
 public class InputMap extends HashMap<Character, Boolean> implements KeyListener, MouseListener, MouseMotionListener {
 
-    @Getter
     private final Point cursor;
-    @Getter
     private final Point click;
-    @Getter
     private boolean isPressed = false;
 
-
-    {
+    public InputMap() {
         Constants.keySet.forEach(k -> put(k, false));
         cursor = new Point(-10, -10);
         click = new Point(-10, -10);
@@ -27,8 +22,7 @@ public class InputMap extends HashMap<Character, Boolean> implements KeyListener
     public void keyPressed(KeyEvent e) {
         char key = Character.toLowerCase(e.getKeyChar());
 
-        if (key == 'v')
-            GameList.allObjects.forEach(System.out::println);
+        if (key == 'v') GameList.allObjects.forEach(System.out::println);
 
         if (!Constants.keySet.contains(key)) return;
         if (key == '0') System.exit(0);
@@ -70,11 +64,27 @@ public class InputMap extends HashMap<Character, Boolean> implements KeyListener
         cursor.setLocation(e.getX(), e.getY());
     }
 
-    // Unused
+    public Point getCursor() {
+        return cursor;
+    }
+
+    public Point getClick() {
+        return click;
+    }
+
+    public boolean isPressed() {
+        return isPressed;
+    }
+
     @Override
-    public void keyTyped(KeyEvent e) {}
+    public void keyTyped(KeyEvent e) {
+    }
+
     @Override
-    public void mouseEntered(MouseEvent e) {}
+    public void mouseEntered(MouseEvent e) {
+    }
+
     @Override
-    public void mouseExited(MouseEvent e) {}
+    public void mouseExited(MouseEvent e) {
+    }
 }

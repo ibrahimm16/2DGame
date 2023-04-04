@@ -17,8 +17,8 @@ public abstract class GameObject implements Serializable {
     public transient BufferedImage image;
     public transient InputMap inputMap;
     public Timer timer;
-    public Boolean active;
-    public Boolean removable;
+    public boolean active;
+    public boolean removable;
 
     public GameObject() {
         init();
@@ -28,7 +28,7 @@ public abstract class GameObject implements Serializable {
     }
 
     public void init() {
-        handler = Handler.handler;
+        handler = Handler.get();
         objects = new GameList<>();
         inputMap = handler.inputMap;
         String imageKey = this.getClass().getSimpleName();
@@ -36,8 +36,8 @@ public abstract class GameObject implements Serializable {
     }
 
     public void update() {
-        objects.update();
         timer.update();
+        objects.update();
     }
 
     public void render(Graphics2D g) {

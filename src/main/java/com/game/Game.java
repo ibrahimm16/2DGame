@@ -5,11 +5,11 @@ import com.engine.Handler;
 
 public class Game {
 
-    Boolean loop = true;
+    boolean loop = true;
     Handler handler;
 
     void start() {
-        handler = new Handler();
+        handler = Handler.get();
 
         while (loop) update();
     }
@@ -20,7 +20,6 @@ public class Game {
 
         try {
             Thread.sleep(1000 / Constants.TICK_RATE);
-        } catch (Exception ignored) {
-        }
+        } catch (Exception ignored) {}
     }
 }

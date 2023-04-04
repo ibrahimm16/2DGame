@@ -16,7 +16,7 @@ public abstract class Weapon extends Entity {
 
     public Weapon() {
         super();
-        vector.isRemovable = true;
+        vector.removable = true;
         vector.object = this;
     }
 
@@ -48,7 +48,7 @@ public abstract class Weapon extends Entity {
 
         entities.forEach(entity -> {
             Rectangle enemyBox = entity.boundingBox();
-            if (intersects(enemyBox)) entity.takeDamage(damage);
+            if (intersects(enemyBox)) entity.damage(damage);
         });
     }
 }

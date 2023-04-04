@@ -4,18 +4,19 @@ import com.engine.util.Vector;
 
 import java.awt.*;
 
-
 public class Entity extends GameObject {
 
-    public Vector vector = new Vector();
-    public int hp;
+    public Vector vector;
+    public double hp;
 
     public Entity() {
         super();
+        vector = new Vector();
     }
 
     @Override
     public void update() {
+        removable = vector.removable;
         move();
         super.update();
     }
@@ -24,17 +25,19 @@ public class Entity extends GameObject {
         vector.move();
     }
 
-    public void takeDamage(int damage) {
-        int newHP = hp - damage;
-        hp = Math.max(newHP, 0);
-        if (hp == 0) removable = true;
+    public void damage(double damage) {
+        hp = Math.max((hp - damage), 0);
+        removable = (hp == 0);
     }
 
     public Rectangle boundingBox() {
-        return new Rectangle((int) vector.x, (int) vector.y, image.getWidth(), image.getHeight());
+        int width = (image == null) ? 0 : image.getWidth();
+        int height = (image == null) ? 0 : image.getHeight();
+
+        return new Rectangle((int) vector.x, (int) vector.y, width, height);
     }
 
-    public Boolean intersects(Rectangle enemyBox) {
-        return enemyBox.intersects(enemyBox);
+    public boolean intersects(Rectangle enemyBox) {
+        return boundingBox().intersects(enemyBox);
     }
 }
